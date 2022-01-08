@@ -18,8 +18,8 @@ spec:
           env:
             - name: JWT_KEY
               valueFrom: 
-                secreKeyRef:
-                  name: jwt-secret
+                secretKeyRef:
+                  name: jwt-secret-key
                   key: JWT_KEY
 ---
 apiVersion: v1

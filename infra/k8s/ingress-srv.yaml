@@ -9,7 +9,7 @@ spec:
   rules:
     - host: stubhubby.com
       http:
-        paths: 
+        paths:
           - path: /api/users/?(.*)
             pathType: Prefix
             backend:

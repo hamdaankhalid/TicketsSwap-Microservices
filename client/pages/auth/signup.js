@@ -35,10 +35,8 @@ const signup = () => {
             <Form.Control type="password" placeholder="Password" value={password} onChange={e => setPassword(e.target.value)}/>
             </Form.Group>
 
-
             {errors}
-            
-            
+
             <Button className="btn btn-primary" type="submit">Sign Up</Button>
         </Form>
     );
