@@ -1,7 +1,5 @@
 import express from 'express';
-import jwt from 'jsonwebtoken';
-
-import { currentUser } from '../middlewares/current-user';
+import { currentUser } from '@stubhubby-common/common/build/index';
 
 const router = express.Router();
 
