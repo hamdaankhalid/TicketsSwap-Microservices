@@ -7,8 +7,8 @@ const start = async() => {
         throw new Error('NO JWT_KEY IN ENVIRONMENT');
     }
 
-    if(!process.env.MONGO_URI) {
-        throw new Error("NO MONGO_URI IN ENVIRONMENT");
+    if (!process.env.MONGO_URI){
+        throw new Error('NO MONGO_URI IN ENVIRONMENT');
     }
 
     try {
