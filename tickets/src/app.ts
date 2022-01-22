@@ -3,7 +3,8 @@ import express from 'express';
 import { json } from 'body-parser';
 import cookieSession from 'cookie-session';
 
-import { errorHandler, NotFoundError } from '@stubhubby-common/common/build/index';
+import { currentUser, errorHandler, NotFoundError } from '@stubhubby-common/common/build/index';
+import { createTicketRouter } from './routes/new';
 
 const app = express();
 app.set('trust proxy', true);
@@ -14,6 +15,10 @@ app.use(
     secure: process.env.NODE_ENV !== 'test'
   })
 );
+
+app.use(currentUser);
+
+app.use(createTicketRouter);
 
 app.get('/health', (req, res) => {
     res.sendStatus(200);
