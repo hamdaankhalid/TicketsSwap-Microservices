@@ -16,7 +16,7 @@ router.post('/api/tickets', requireAuth,
         userId: req.currentUser!.id
     });
     await ticket.save();
-
+    // console.log(ticket)
     res.sendStatus(201).send(ticket);
 });
 
