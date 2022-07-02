@@ -1,23 +1,32 @@
-import { requireAuth, validateRequest } from '@stubhubby-common/common/build';
 import express, { Request, Response } from 'express';
 import { body } from 'express-validator';
-import { Ticket }  from '../models/ticket';
+import { requireAuth, validateRequest } from '@hamdaankhalid/common';
+import { Ticket } from '../models/ticket';
 
 const router = express.Router();
 
-router.post('/api/tickets', requireAuth, 
-[
+router.post(
+  '/api/tickets',
+  requireAuth,
+  [
     body('title').not().isEmpty().withMessage('Title is required'),
-    body('price').isFloat({ gt: 0 }).withMessage('Price must be greater than 0')
-], validateRequest, async (req: Request, res: Response) => {
+    body('price')
+      .isFloat({ gt: 0 })
+      .withMessage('Price must be greater than 0'),
+  ],
+  validateRequest,
+  async (req: Request, res: Response) => {
     const { title, price } = req.body;
+
     const ticket = Ticket.build({
-        title, price,
-        userId: req.currentUser!.id
+      title,
+      price,
+      userId: req.currentUser!.id,
     });
     await ticket.save();
-    // console.log(ticket)
-    res.sendStatus(201).send(ticket);
-});
+
+    res.status(201).send(ticket);
+  }
+);
 
 export { router as createTicketRouter };
