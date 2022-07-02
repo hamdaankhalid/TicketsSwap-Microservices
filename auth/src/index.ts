@@ -1,26 +1,29 @@
 import mongoose from 'mongoose';
+
 import { app } from './app';
 
+const start = async () => {
+  if (!process.env.JWT_KEY) {
+    throw new Error('JWT_KEY must be defined');
+  }
+  if (!process.env.MONGO_URI) {
+    throw new Error('MONGO_URI must be defined');
+  }
 
-const start = async() => {
-    if (!process.env.JWT_KEY){
-        throw new Error('NO JWT_KEY IN ENVIRONMENT');
-    }
-
-    if(!process.env.MONGO_URI) {
-        throw new Error("NO MONGO_URI IN ENVIRONMENT");
-    }
-
-    try {
-        await mongoose.connect(process.env.MONGO_URI);    
-        console.log('Connected to MongoDb!');
-    } catch (error) {
-        console.error(error);
-    }
-
-    app.listen(3000, async () => {
-        console.log('Auth Service on port 3000');
+  try {
+    await mongoose.connect(process.env.MONGO_URI, {
+      useNewUrlParser: true,
+      useUnifiedTopology: true,
+      useCreateIndex: true,
     });
-}
+    console.log('Connected to MongoDb');
+  } catch (err) {
+    console.error(err);
+  }
+
+  app.listen(3000, () => {
+    console.log('Listening on port 3000!!!!!!!!');
+  });
+};
 
 start();

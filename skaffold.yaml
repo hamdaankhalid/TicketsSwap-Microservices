@@ -16,7 +16,7 @@ build:
         manual:
           - src: 'src/**/*.ts'
             dest: .
-    - image: hamdaankhalid/client
+    - image: hamdaankhalid/ticketing-client
       context: client
       docker:
         dockerfile: Dockerfile

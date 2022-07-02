@@ -14,20 +14,20 @@ spec:
     spec:
       containers:
         - name: auth
-          image: hamdaankhalid/auth:latest
+          image: hamdaankhalid/auth
           env:
             - name: MONGO_URI
               value: 'mongodb://auth-mongo-srv:27017/auth'
             - name: JWT_KEY
-              valueFrom: 
+              valueFrom:
                 secretKeyRef:
-                  name: jwt-secret-key
+                  name: jwt-secret
                   key: JWT_KEY
 ---
 apiVersion: v1
 kind: Service
 metadata:
-  name: auth-srv 
+  name: auth-srv
 spec:
   selector:
     app: auth

@@ -14,12 +14,12 @@ spec:
     spec:
       containers:
         - name: client
-          image: hamdaankhalid/client
+          image: hamdaankhalid/ticketing-client
 ---
 apiVersion: v1
 kind: Service
 metadata:
-  name: client-srv 
+  name: client-srv
 spec:
   selector:
     app: client

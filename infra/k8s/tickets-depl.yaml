@@ -14,20 +14,20 @@ spec:
     spec:
       containers:
         - name: tickets
-          image: hamdaankhalid/tickets:latest
+          image: hamdaankhalid/tickets
           env:
             - name: MONGO_URI
               value: 'mongodb://tickets-mongo-srv:27017/tickets'
             - name: JWT_KEY
-              valueFrom: 
+              valueFrom:
                 secretKeyRef:
-                  name: jwt-secret-key
+                  name: jwt-secret
                   key: JWT_KEY
 ---
 apiVersion: v1
 kind: Service
 metadata:
-  name: tickets-srv 
+  name: tickets-srv
 spec:
   selector:
     app: tickets
