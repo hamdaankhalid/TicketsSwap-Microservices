@@ -4,11 +4,12 @@ deploy:
   kubectl:
     manifests:
       - ./infra/k8s/*
+      - ./infra/k8s-dev/*
 build:
   local:
     push: false
   artifacts:
-    - image: hamdaankhalid/auth
+    - image: cygnetops/auth
       context: auth
       docker:
         dockerfile: Dockerfile
@@ -16,7 +17,7 @@ build:
         manual:
           - src: 'src/**/*.ts'
             dest: .
-    - image: hamdaankhalid/ticketing-client
+    - image: cygnetops/ticketing-client
       context: client
       docker:
         dockerfile: Dockerfile
@@ -24,8 +25,32 @@ build:
         manual:
           - src: '**/*.js'
             dest: .
-    - image: hamdaankhalid/tickets
+    - image: cygnetops/tickets
       context: tickets
+      docker:
+        dockerfile: Dockerfile
+      sync:
+        manual:
+          - src: 'src/**/*.ts'
+            dest: .
+    - image: cygnetops/orders
+      context: orders
+      docker:
+        dockerfile: Dockerfile
+      sync:
+        manual:
+          - src: 'src/**/*.ts'
+            dest: .
+    - image: cygnetops/expiration
+      context: expiration
+      docker:
+        dockerfile: Dockerfile
+      sync:
+        manual:
+          - src: 'src/**/*.ts'
+            dest: .
+    - image: cygnetops/payments
+      context: payments
       docker:
         dockerfile: Dockerfile
       sync:

@@ -1,10 +1,10 @@
-import express, { Request, Response } from 'express';
-import { NotFoundError } from '@hamdaankhalid/common';
-import { Ticket } from '../models/ticket';
+import express, { Request, Response } from "express";
+import { NotFoundError } from "@cygnetops/common-v2";
+import { Ticket } from "../models/ticket";
 
 const router = express.Router();
 
-router.get('/api/tickets/:id', async (req: Request, res: Response) => {
+router.get("/api/tickets/:id", async (req: Request, res: Response) => {
   const ticket = await Ticket.findById(req.params.id);
 
   if (!ticket) {
